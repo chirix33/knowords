@@ -1,0 +1,90 @@
+body {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #393E46;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+    color: #00FFF5;
+}
+
+.container > h1 {
+    font-size: 4rem;
+    line-height: 25px;
+}
+
+.align-left {
+    text-align: left;
+}
+
+.form-wrapper {
+    margin-top: 80px;
+}
+
+.form-group {
+    position: relative;
+    color: #00ADB5;
+    margin-bottom: 40px;
+}
+
+.form-group > input {
+    outline: none;
+    border: 2px solid #00FFF5;
+    width: 100%;
+    /* height: 35px; */
+    padding: 16px 0;
+    background-color: transparent;
+    font-size: 20px;
+    color: white;
+}
+
+.form-group > select {
+    outline: none;
+    border: 2px solid #00FFF5;
+    width: 100%;
+    padding: 16px 0;
+    background-color: transparent;
+    font-size: 20px;
+    color: #00ADB5;
+    font-family: 'Poppins', sans-serif;
+}
+
+.form-group > span {
+    position: absolute;
+    font-size: 20px;
+    top: 50%;
+    left: 6px;
+    transform: translateY(-50%);
+    transition: .2s;
+}
+
+span.active {
+    top: -10px;
+    color: #00FFF5;
+    font-size: 16px;
+}
+
+form > button {
+    outline: none;
+    display: block;
+    width: 100%;
+    padding: 10px 23px;
+    background-color: #00FFF5;
+    color: #393E46;
+    font-weight: bold;
+    font-size: 22px;
+    border: none;
+    height: 70px;
+    cursor: pointer;
+}
+
+.word-information {
+    width: 60%;
+    padding: 20px;
+    background-color: #00ADB5;
+    color: black;
+}

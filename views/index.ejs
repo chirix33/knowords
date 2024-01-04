@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <title>KnoWords</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>KnoWords</h1>
+        <p>Get to know the most about english words</p>
+        <% if (locals.word) { %>
+            <div class="word-information">
+                <h3>Your Word: <%= word %> (<%= action %>)</h3>
+                <%- info %></h3>
+            </div>
+        <% } %>
+
+        <% if (locals.error) { %>
+            <div class="error-information">
+                <h3><%= error %></h3>
+            </div>
+        <% } %>
+        <div class="form-wrapper">
+            <form action="" method="post">
+                <div class="form-group">
+                    <input id="word" type="text" name="word" required>
+                    <span>Your Word...</span>
+                </div>
+                <div class="form-group">
+                    <select id="" name="action">
+                        <option>Choose an action...</option>
+                        <option value="frequency">Frequency</option>
+                        <option value="syllables">Syllables</option>
+                        <option value="pronounciation">Pronounciation</option>
+                        <option value="antonyms">Antonyms</option>
+                        <option value="rhymes">Rhymes</option>
+                        <option value="examples">Examples</option>
+                    </select>
+                </div>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function() {
+            $("#word").focus(function() {
+                $("span").addClass("active");
+            });
+
+            $("#word").focusout(function() {
+                if ( $(this).val() == "" ) {
+                    $("span").removeClass("active");
+                } else {
+                    $("span").addClass("active");
+                }
+            });
+        });
+    </script>
+</body>
+</html>
