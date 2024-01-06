@@ -64,20 +64,32 @@ app.post("/", async (req, res) => {
             options['url'] = `https://wordsapiv1.p.rapidapi.com/words/${word}/pronunciation`;
             try {
                 const response = await axios.request(options);
-                console.log(response.data);
+                let information = "<ul>";
+                for (const pronunciationType in response.data.pronunciation) {
+                    information += "<li>"+pronunciationType+": "+response.data.pronunciation[pronunciationType]+"</li>";
+                }
+                information += "</ul>";
+
+                res.render("index.ejs", {word: word, action: 'pronunciation', info: information});
             } catch (error) {
-                console.error(error);
+                res.render("index.ejs", {error: error});
             }
-            res.render("/");
             break;
 
         case "antonyms":
             options['url'] = `https://wordsapiv1.p.rapidapi.com/words/${word}/antonyms`;
             try {
                 const response = await axios.request(options);
-                console.log(response.data);
+                
+                let information = "<ul>";
+                response.data.antonyms.forEach(antonym => {
+                    information += "<li>"+antonym+"<li>";
+                });
+                information += "</ul>";
+
+                res.render("index.ejs", {word: word, action: 'antonyms', info: information});
             } catch (error) {
-                console.error(error);
+                res.render("index.ejs", {error: error});
             }
             break;
         
@@ -85,9 +97,15 @@ app.post("/", async (req, res) => {
             options['url'] = `https://wordsapiv1.p.rapidapi.com/words/${word}/rhymes`;
             try {
                 const response = await axios.request(options);
-                console.log(response.data);
+                let information = "<ul>";
+                response.data.rhymes.all.forEach(rhyme => {
+                    information += "<li>"+rhyme+"</li>";
+                });
+                information += "</ul>";
+
+                res.render("index.ejs", {word: word, action: 'rhymes', info: information});
             } catch (error) {
-                console.error(error);
+                res.render("index.ejs", {error: error});
             }
             break;
         
@@ -95,13 +113,19 @@ app.post("/", async (req, res) => {
             options['url'] = `https://wordsapiv1.p.rapidapi.com/words/${word}/examples`;
             try {
                 const response = await axios.request(options);
-                console.log(response.data);
+                let information = "<ul>";
+                response.data.examples.forEach(example => {
+                    information += "<li>"+example+"</li>";
+                });
+                information += "</ul>";
+
+                res.render("index.ejs", {word: word, action: 'examples', info: information});
             } catch (error) {
-                console.error(error);
+                res.render("index.ejs", {error: error});
             }
             break;
         default:
-            res.render("/");
+            res.render("index.ejs");
             break;
     }
 });
